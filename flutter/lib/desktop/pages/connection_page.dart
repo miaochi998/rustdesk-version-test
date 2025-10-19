@@ -141,13 +141,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
       height: height,
       child: Obx(() => isIncomingOnly
           ? Column(
-              children: [
-                basicWidget(),
-                Align(
-                        child: startServiceWidget(),
-                        alignment: Alignment.centerLeft)
-                    .marginOnly(top: 2.0, left: 22.0),
-              ],
+              children: [] // 🎯 清空children，移除广告内容,
             )
           : basicWidget()),
     ).paddingOnly(right: isIncomingOnly ? 8 : 0);
