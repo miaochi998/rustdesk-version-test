@@ -827,6 +827,9 @@ pub fn check_software_update() {
 
 #[tokio::main(flavor = "current_thread")]
 async fn check_software_update_() -> hbb_common::ResultType<()> {
+    // 🎯 直接返回，完全禁用自动更新检查 (v1.3.8)
+    log::info!("Auto update disabled by custom build");
+    return Ok(());
     let (request, url) =
         hbb_common::version_check_request(hbb_common::VER_TYPE_RUSTDESK_CLIENT.to_string());
     let latest_release_response = create_http_client_async()
@@ -930,7 +933,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "http://yc.bonnei.com:21114".to_owned()
 }
 
 pub fn get_audit_server(api: String, custom: String, typ: String) -> String {
