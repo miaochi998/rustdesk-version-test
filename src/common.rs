@@ -940,6 +940,9 @@ pub fn is_modifier(evt: &KeyEvent) -> bool {
 }
 
 pub fn check_software_update() {
+    // 🎯 拦截点2：禁用UI手动更新检查
+    log::info!("Software update check disabled by custom build");
+    return;
     if is_custom_client() {
         return;
     }
@@ -1085,7 +1088,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "http://yc.bonnei.com:21114".to_owned()
 }
 
 #[inline]
