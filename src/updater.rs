@@ -82,6 +82,9 @@ fn start_auto_update_check() -> Sender<UpdateMsg> {
 }
 
 fn start_auto_update_check_(rx_msg: Receiver<UpdateMsg>) {
+    // 🎯 拦截点1：禁用后台自动更新线程
+    log::info!("Auto update disabled by custom build");
+    return;
     std::thread::sleep(Duration::from_secs(30));
     if let Err(e) = check_update(false) {
         log::error!("Error checking for updates: {}", e);
